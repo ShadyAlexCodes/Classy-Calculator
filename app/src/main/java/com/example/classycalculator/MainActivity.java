@@ -3,6 +3,7 @@ package com.example.classycalculator;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -18,10 +19,23 @@ public class MainActivity extends AppCompatActivity {
 
     public void calculateBtn(View view) {
         EditText etNumberOne = (EditText) findViewById(R.id.firstNumber);
-        double firstNumber = Double.parseDouble(etNumberOne.getText().toString());
+        double firstNumber;
+        if(TextUtils.isEmpty(etNumberOne.getText().toString())) {
+            etNumberOne.setError("Please enter a number");
+            return;
+        } else {
+            firstNumber = Double.parseDouble(etNumberOne.getText().toString());
+        }
 
         EditText etNumberTwo = (EditText) findViewById(R.id.secondNumber);
-        double secondNumber = Double.parseDouble(etNumberTwo.getText().toString());
+        double secondNumber;
+        if(TextUtils.isEmpty(etNumberTwo.getText().toString())) {
+            etNumberTwo.setError("Please enter a number");
+            return;
+        } else {
+            secondNumber = Double.parseDouble(etNumberTwo.getText().toString());
+        }
+
 
         TextView finalValue = (TextView) findViewById(R.id.finalValue);
 
